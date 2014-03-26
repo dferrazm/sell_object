@@ -51,7 +51,7 @@ In this case, this will generate the XML used by `Shopping UOL` in its search en
 
 ### Mapping the attributes
 
-SellObject comes with a default mapping to be applied through the exporting process. Continuing the `Shopping UOL` example, the mapping is used to grab the `product` attributes and build the XML tags. The default mapping is defined in the following module:
+SellObject comes with a default mapping to be applied through the exporting process. Continuing the `Shopping UOL` example, the mapping is used to grab the `product` attributes and build the XML tags. The default mapping are defined in the following module:
 
 ```ruby
 module SellObject
