@@ -51,8 +51,8 @@ The SellObject comes with a default mapping to be applied through the exporting 
 
 ```ruby
 module SellObject
-	module DefaultMapping
-		def shopping_uol
+	module DefaultMappings
+		def self.shopping_uol
 			{ 
 				codigo: :id, 
 				descricao: :description, 
@@ -65,12 +65,12 @@ end
 ```
 If you want to use the default mapping, just make sure that the object responds to the required methods. In our example, `product` would have to respond to `:id`, `:description`, `:price` and so forth.
 
-If you want to create your own mapping, you can define a module named with the object's class name + 'Mapping'. For our `product` example, we could define like this:
+If you want to create your own mapping, you can define a module named with the object's class name + 'Mappings'. For our `product` example, we could define like this:
 
 ```ruby
 module SellObject
-	module ProductMapping
-		def shopping_uol
+	module ProductMappings
+		def self.shopping_uol
 			{ 
 				codigo: :code, 
 				descricao: :details,
