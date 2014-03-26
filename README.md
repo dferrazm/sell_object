@@ -1,5 +1,9 @@
 # SellObject
 
+By [Ima Bold](http://imabold.com).
+
+[![Code Climate](https://codeclimate.com/github/imaboldcompany/sell_object.png)](https://codeclimate.com/github/imaboldcompany/sell_object)
+
 SellObject is an extensible solution to make it easy exporting ruby objects to be used on price comparison shopping engines. The gem adds helper methods that format your objects making them ready to be consumable by the supported price comparison engines.
 
 Currently, the following shopping engines are supported:
@@ -10,9 +14,9 @@ Currently, the following shopping engines are supported:
 
 Add this line to your application's Gemfile:
 
-    ```ruby
-    gem 'sell_object'
-    ```
+```ruby
+gem 'sell_object'
+```
 
 And then execute:
 
@@ -27,7 +31,7 @@ Or install it yourself as:
 ### Setting up the class
 
 Suppose you have a class named `Product` and want to make its objects sellable through `Shopping UOL`. 
-You do that using `sellable_through` as shown below:
+You do that using `selling_through` as shown below:
 
 ```ruby
 class Product
@@ -47,7 +51,7 @@ In this case, this will generate the XML used by `Shopping UOL` in its search en
 
 ### Mapping the attributes
 
-The SellObject comes with a default mapping to be applied through the exporting process. Continuing the `Shopping UOL` example, the mapping is used to grab the `product` attributes and build the XML tags. The default mapping is defined in the following module:
+SellObject comes with a default mapping to be applied through the exporting process. Continuing the `Shopping UOL` example, the mapping is used to grab the `product` attributes and build the XML tags. The default mapping is defined in the following module:
 
 ```ruby
 module SellObject
