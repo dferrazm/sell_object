@@ -80,7 +80,7 @@ module SellObject
 	end	
 end
 ```
-In this case, `product` would have to respond to `:code`, `:details` and `:web_page`. Note that we didn't overwrite all the attribute mappings. The left overs will fall back to the default mapping. So in this example, `product` would still have to respond to the `:price` method.
+In this case, `product` would have to respond to `:code`, `:details` and `:web_page`. Note that we didn't overwrite all the attribute mappings. The leftovers will fall back to the default mapping. So in this example, `product` would still have to respond to the `:price` method.
 
 When defining you own mappings, you can easily unit test them using Test::Unit, Rspec or other testing solutions.
 
