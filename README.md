@@ -2,6 +2,8 @@
 
 By [Ima Bold](http://imabold.com).
 
+(Not published yet)
+
 [![Code Climate](https://codeclimate.com/github/imaboldcompany/sell_object.png)](https://codeclimate.com/github/imaboldcompany/sell_object)
 
 SellObject is an extensible solution to make it easy exporting ruby objects to be used on price comparison shopping engines. The gem adds helper methods that format your objects making them ready to be consumable by the supported price comparison engines.
