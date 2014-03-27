@@ -47,7 +47,7 @@ Now, to export a given `product` object into a consumable format used in `Shoppi
 product.to_shopping_uol
 ```
 
-In this case, this will generate the XML used by `Shopping UOL` in its search engine, based on the `product` attributes.
+In this case, this will generate a XML snippet element with the `product` attributes that goes inside the final XML used by `Shopping UOL` in its search engine.
 
 ### Mapping the attributes
 

@@ -1,38 +1,56 @@
 require 'spec_helper'
 
+class Product
+	include SellObject::ShoppingUol
+end
+
 describe SellObject::ShoppingUol do
 	describe '#to_shopping_uol' do
+		let(:some_product) { Product.new }
+
+		before do
+			some_product.stub(:id).and_return 'PR1'
+			some_product.stub(:description).and_return 'Some lame product'
+			some_product.stub(:price).and_return 10.5
+			some_product.stub(:url).and_return 'http://example.com/default-product'
+		end
+
 		context 'using the default mappings' do
-			class Product
-				include SellObject::ShoppingUol
-				
-				def id
-					'PR1'
-				end
-
-				def description
-					'Some lame product'
-				end
-
-				def price
-					10.5
-				end
-
-				def url
-					'http://example.com/default-product'
-				end
-			end
-
-			let(:default_product) { Product.new }
-
 			it 'generates the XML accordingly with the object attributes' do
-				result_xml = remove_xml_noise default_product.to_shopping_uol
-				expected_xml = remove_xml_noise IO.read('./spec/support/shopping_uol/from_default_mappings.xml')
-				expect(result_xml).to eq expected_xml
+				expect(remove_xml_noise some_product.to_shopping_uol).to eq remove_xml_noise %q{
+					<PRODUTO>
+					  <CODIGO>PR1</CODIGO>
+					  <DESCRICAO>Some lame product</DESCRICAO>
+					  <PRECO>10.5</PRECO>
+					  <URL>http://example.com/default-product</URL>
+					</PRODUTO>
+				}
 			end
 		end
 
-		context 'using custom mappings'		
+		context 'using custom mappings'	do						
+			before do
+				some_product.stub(:custom_description).and_return 'My custom lame product description'
+				some_product.stub(:custom_url).and_return 'http://example.com/custom-product'
+
+				module SellObject::ProductMappings
+					def self.shopping_uol
+						{ descricao: :custom_description,  url: :custom_url }
+					end
+				end
+			end
+
+			it 'generates the XML accordingly with the object attributes defined in the custom mappings' do
+				expect(remove_xml_noise some_product.to_shopping_uol).to eq remove_xml_noise %q{
+					<PRODUTO>
+					  <CODIGO>PR1</CODIGO>
+					  <DESCRICAO>My custom lame product description</DESCRICAO>
+					  <PRECO>10.5</PRECO>
+					  <URL>http://example.com/custom-product</URL>
+					</PRODUTO>
+				} 	
+			end
+		end	
 	end
 end
 
