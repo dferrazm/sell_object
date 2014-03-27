@@ -18,12 +18,15 @@ describe SellObject::ShoppingUol do
 		context 'using the default mappings' do
 			it 'generates the XML accordingly with the object attributes' do
 				expect(remove_xml_noise some_product.to_shopping_uol).to eq remove_xml_noise %q{
-					<PRODUTO>
-					  <CODIGO>PR1</CODIGO>
-					  <DESCRICAO>Some lame product</DESCRICAO>
-					  <PRECO>10.5</PRECO>
-					  <URL>http://example.com/default-product</URL>
-					</PRODUTO>
+					<?xml version="1.0" encoding="iso-8859-1" ?>
+					<PRODUTOS>
+						<PRODUTO>
+						  <CODIGO>PR1</CODIGO>
+						  <DESCRICAO>Some lame product</DESCRICAO>
+						  <PRECO>10.5</PRECO>
+						  <URL>http://example.com/default-product</URL>
+						</PRODUTO>
+					</PRODUTOS>
 				}
 			end
 		end
@@ -42,12 +45,15 @@ describe SellObject::ShoppingUol do
 
 			it 'generates the XML accordingly with the object attributes defined in the custom mappings' do
 				expect(remove_xml_noise some_product.to_shopping_uol).to eq remove_xml_noise %q{
-					<PRODUTO>
-					  <CODIGO>PR1</CODIGO>
-					  <DESCRICAO>My custom lame product description</DESCRICAO>
-					  <PRECO>10.5</PRECO>
-					  <URL>http://example.com/custom-product</URL>
-					</PRODUTO>
+					<?xml version="1.0" encoding="iso-8859-1" ?>
+					<PRODUTOS>
+						<PRODUTO>
+						  <CODIGO>PR1</CODIGO>
+						  <DESCRICAO>My custom lame product description</DESCRICAO>
+						  <PRECO>10.5</PRECO>
+						  <URL>http://example.com/custom-product</URL>
+						</PRODUTO>
+					</PRODUTOS>
 				} 	
 			end
 		end	

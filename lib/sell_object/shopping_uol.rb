@@ -1,12 +1,15 @@
 module SellObject
 	module ShoppingUol
 		XML_ELEMENT = %q{
-				<PRODUTO>
-					<CODIGO>:codigo</CODIGO>
-	  			<DESCRICAO>:descricao</DESCRICAO>
-	  			<PRECO>:preco</PRECO>
-	  			<URL>:url</URL>
-				</PRODUTO>
+				<?xml version="1.0" encoding="iso-8859-1" ?>
+				<PRODUTOS>
+					<PRODUTO>
+						<CODIGO>:codigo</CODIGO>
+		  			<DESCRICAO>:descricao</DESCRICAO>
+		  			<PRECO>:preco</PRECO>
+		  			<URL>:url</URL>
+					</PRODUTO>
+				</PRODUTOS>
 		}
 
 		# Instance methods added on inclusion

@@ -30,7 +30,7 @@ Or install it yourself as:
 
 ### Setting up the class
 
-Suppose you have a class named `Product` and want to make its objects sellable through `Shopping UOL`. 
+Suppose you have a class named `Product` and want to make its objects sellable through Shopping UOL. 
 You do that using `selling_through` as shown below:
 
 ```ruby
@@ -41,17 +41,23 @@ class Product
 end
 ```
 
-Now, to export a given `product` object into a consumable format used in `Shopping UOL`, just call:
+After that, to export a given `product` object into a consumable format used in Shopping UOL, just call:
 
 ```ruby
 product.to_shopping_uol
 ```
 
-In this case, this will generate a XML snippet element with the `product` attributes that goes inside the final XML used by `Shopping UOL` in its search engine.
+In this case, this will generate the XML used by Shopping UOL in its search engine, based on the `product` attributes.
+
+Now, take `products` as collection of `Product` and you want to export all the collection into a consumable format used in Shopping UOL. All you have to do is use the class method passing the `products` collection, as shown:
+
+```ruby
+Product.to_shopping_uol products
+```
 
 ### Mapping the attributes
 
-SellObject comes with a default mapping to be applied through the exporting process. Continuing the `Shopping UOL` example, the mapping is used to grab the `product` attributes and build the XML tags. The default mapping are defined in the following module:
+SellObject comes with a default mapping to be applied through the exporting process. Continuing the Shopping UOL example, the mapping is used to grab the `product` attributes and build the XML tags. The default mapping are defined in the following module:
 
 ```ruby
 module SellObject
