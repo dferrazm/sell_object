@@ -23,6 +23,13 @@ describe SellObject do
 				end
 			end
 
+			context 'buscape' do			
+				it 'includes the module SellObject::Buscape in the target class' do
+					TargetClass.sell_through :buscape
+					expect(TargetClass.included_modules).to include SellObject::Buscape				
+				end
+			end
+
 			context 'shopping_uol' do			
 				it 'includes the module SellObject::ShoppingUol in the target class' do
 					TargetClass.sell_through :shopping_uol
