@@ -1,6 +1,7 @@
 require 'sell_object/version'
 require 'sell_object/default_mappings'
 require 'sell_object/shopping_uol'
+require 'sell_object/buscape'
 
 module SellObject
   def self.included(base)
@@ -8,7 +9,7 @@ module SellObject
   end  
 
   def self.supported_engines
-  	%w(shopping_uol)
+  	%w(shopping_uol buscape)
   end
 
   module ClassMethods

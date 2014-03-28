@@ -34,7 +34,7 @@ describe SellObject do
 
 	describe '#supported_engines' do
 		it 'returns the supported shopping engines array' do
-			expect(subject.supported_engines).to match_array %w(shopping_uol)
+			expect(subject.supported_engines).to match_array %w(shopping_uol buscape)
 		end
 	end	
 end

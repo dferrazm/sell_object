@@ -8,5 +8,16 @@ module SellObject
 				url: :url
 			}
 		end
+
+		def self.buscape
+			{
+				id_oferta: :id, 
+				descricao: :description, 
+				preco: :price,
+				link_prod: :url,
+				imagem: :image_url,
+				categoria: :category
+			}
+		end
 	end
 end
