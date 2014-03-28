@@ -33,13 +33,13 @@ Or install it yourself as:
 ### Setting up the class
 
 Suppose you have a class named `Product` and want to make its objects sellable through Shopping UOL. 
-You do that using `selling_through` as shown below:
+You do that using `sell_through` as shown below:
 
 ```ruby
 class Product
 	include SellObject
 
-	selling_through :shopping_uol
+	sell_through :shopping_uol
 end
 ```
 

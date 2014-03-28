@@ -12,7 +12,7 @@ module SellObject
   end
 
   module ClassMethods
-  	def selling_through(*engines)
+  	def sell_through(*engines)
   		raise ArgumentError.new('must pass at least one shopping engine') if engines.empty?
   		engines.each do |engine|
   			raise ArgumentError.new("invalid shopping engine #{engine}") unless SellObject.supported_engines.include? engine.to_s
