@@ -66,7 +66,7 @@ describe SellObject::ShoppingUol do
 	context 'using custom mappings' do
 		before do
 			lame_product.stub(:custom_description).and_return 'My custom lame product description'
-			lame_product.stub(:custom_url).and_return 'http://example.com/custom-product'
+			lame_product.stub(:custom_url).and_return 'http://example.com/custom-lame-product'
 
 			module SellObject::ProductMappings
 				def self.shopping_uol
@@ -79,10 +79,27 @@ describe SellObject::ShoppingUol do
 			describe '#to_shopping_uol' do
 				before do
 					boring_product.stub(:custom_description).and_return 'My custom boring product description'
-					boring_product.stub(:custom_url).and_return 'http://example.com/boring-product'
+					boring_product.stub(:custom_url).and_return 'http://example.com/custom-boring-product'
 				end
 
 				it 'generates the XML accordingly with all the objects attributes and the custom mappings' do
+					expect(remove_xml_noise Product.to_shopping_uol(products)).to eq remove_xml_noise %q{
+						<?xml version="1.0" encoding="iso-8859-1" ?>
+						<PRODUTOS>
+							<PRODUTO>
+							  <CODIGO>PR1</CODIGO>
+							  <DESCRICAO>My custom lame product description</DESCRICAO>
+							  <PRECO>10.5</PRECO>
+							  <URL>http://example.com/custom-lame-product</URL>
+							</PRODUTO>
+							<PRODUTO>
+							  <CODIGO>PR2</CODIGO>
+							  <DESCRICAO>My custom boring product description</DESCRICAO>
+							  <PRECO>7</PRECO>
+							  <URL>http://example.com/custom-boring-product</URL>
+							</PRODUTO>
+						</PRODUTOS>
+					}
 				end
 			end
 		end
@@ -97,7 +114,7 @@ describe SellObject::ShoppingUol do
 							  <CODIGO>PR1</CODIGO>
 							  <DESCRICAO>My custom lame product description</DESCRICAO>
 							  <PRECO>10.5</PRECO>
-							  <URL>http://example.com/custom-product</URL>
+							  <URL>http://example.com/custom-lame-product</URL>
 							</PRODUTO>
 						</PRODUTOS>
 					} 	
