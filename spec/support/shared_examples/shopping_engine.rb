@@ -25,61 +25,53 @@ shared_examples_for 'shopping_engine' do |engine|
 		boring_product.stub(:image_url).and_return 'http://example.com/images/boring-product.png'
 	end
 
-	context 'using default mappings' do
-		describe 'class methods' do
-			describe "#to_#{engine}" do
+	describe 'class_methods' do
+		describe "#to_#{engine}" do
+			context 'using default mappings' do
 				it 'generates the XML accordingly with all the objects attributes' do
 					expect(remove_xml_noise Product.send("to_#{engine}", products)).to eq remove_xml_noise macros::DEFAULT_MAPPING_FIXTURE_MANY
 				end
 			end
-		end
 
-		describe 'instance methods' do
-			it 'generates the XML accordingly with the object attributes' do
-				expect(remove_xml_noise lame_product.send("to_#{engine}")).to eq remove_xml_noise macros::DEFAULT_MAPPING_FIXTURE_ONE
-			end
-		end	
-	end
-
-	context 'using custom mappings' do
-		before do
-			lame_product.stub(:custom_description).and_return 'My custom lame product description'
-			lame_product.stub(:custom_url).and_return 'http://example.com/custom-lame-product'
-
-			module SellObject::ProductMappings
- 				def self.buscape
- 					{ descricao: :custom_description,  link_prod: :custom_url }
- 				end
-
- 				def self.shopping_uol
-	 				{ descricao: :custom_description,  url: :custom_url }
-	 			end
-	 		end		
-		end
-
-		after do
-			SellObject.send :remove_const, :ProductMappings
-		end
-
-		describe 'class methods' do
-			describe "#to_#{engine}" do
+			context 'using custom mappings' do
 				before do
+					lame_product.stub(:custom_description).and_return 'My custom lame product description'
+					lame_product.stub(:custom_url).and_return 'http://example.com/custom-lame-product'
 					boring_product.stub(:custom_description).and_return 'My custom boring product description'
 					boring_product.stub(:custom_url).and_return 'http://example.com/custom-boring-product'
+
+					module SellObject::ProductMappings
+		 				def self.buscape
+		 					{ descricao: :custom_description,  link_prod: :custom_url }
+		 				end
+
+		 				def self.shopping_uol
+			 				{ descricao: :custom_description,  url: :custom_url }
+			 			end
+			 		end		
+				end
+
+				after do
+					SellObject.send :remove_const, :ProductMappings
 				end
 
 				it 'generates the XML accordingly with all the objects attributes and the custom mappings' do
 					expect(remove_xml_noise Product.send("to_#{engine}", products)).to eq remove_xml_noise macros::CUSTOM_MAPPING_FIXTURE_MANY
 				end
-			end
+			end			
 		end
+	end
 
-		describe 'instance methods' do
-			describe "#to_#{engine}" do
-				it 'generates the XML accordingly with the object attributes defined in the custom mappings' do
-					expect(remove_xml_noise lame_product.send("to_#{engine}")).to eq remove_xml_noise macros::CUSTOM_MAPPING_FIXTURE_ONE	
-				end
+	describe 'instance methods' do
+		describe "#to_#{engine}" do
+			it 'generates the XML accordingly with the object attributes' do
+				expect(remove_xml_noise lame_product.send("to_#{engine}")).to eq remove_xml_noise macros::DEFAULT_MAPPING_FIXTURE_ONE
 			end
-		end
+
+			it "calls the #to_#{engine} class method passing the instance wrapped in an array" do
+				Product.should_receive(:"to_#{engine}").with [lame_product]
+				lame_product.send "to_#{engine}"
+			end
+		end			
 	end
 end

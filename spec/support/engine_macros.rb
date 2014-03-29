@@ -36,20 +36,6 @@ module EngineMacros
 			</produtos>
 		}
 
-		CUSTOM_MAPPING_FIXTURE_ONE = %q{
-			<?xml version="1.0" encoding="UTF-8" ?>
-			<produtos>
-				<produto>
-				  <id_oferta>PR1</id_oferta>
-				  <descricao>My custom lame product description</descricao>
-				  <preco>10,50</preco>
-				  <link_prod>http://example.com/custom-lame-product</link_prod>
-				  <imagem>http://example.com/images/lame-product.png</imagem>
-				  <categoria>Electronics</categoria>
-				</produto>
-			</produtos>
-		} 
-
 		CUSTOM_MAPPING_FIXTURE_MANY = %q{
 			<?xml version="1.0" encoding="UTF-8" ?>
 			<produtos>
@@ -100,18 +86,6 @@ module EngineMacros
 				  <DESCRICAO>Some boring product</DESCRICAO>
 				  <PRECO>7</PRECO>
 				  <URL>http://example.com/boring-product</URL>
-				</PRODUTO>
-			</PRODUTOS>
-		}
-
-		CUSTOM_MAPPING_FIXTURE_ONE = %q{
-			<?xml version="1.0" encoding="iso-8859-1" ?>
-			<PRODUTOS>
-				<PRODUTO>
-				  <CODIGO>PR1</CODIGO>
-				  <DESCRICAO>My custom lame product description</DESCRICAO>
-				  <PRECO>10.5</PRECO>
-				  <URL>http://example.com/custom-lame-product</URL>
 				</PRODUTO>
 			</PRODUTOS>
 		}
