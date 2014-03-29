@@ -13,6 +13,20 @@ module SellObject
 	  	base.extend ClassMethods
 	  end
 
+	  class FormatterProxy
+	  	attr_accessor :target
+
+	  	def initialize(target_object)
+	  		self.target = target_object
+	  	end
+
+	  	private
+
+	  	def method_missing(method, *args, &block)
+	  		target.send(args.first).to_s
+	  	end
+	  end
+
 	  module ClassMethods
 			# Class methods added on inclusion
 
@@ -30,12 +44,7 @@ module SellObject
 		# Instance methods added on inclusion
 
 		def to_shopping_uol
-			%Q{
-					<?xml version="1.0" encoding="iso-8859-1" ?>
-					<PRODUTOS>
-						#{to_shopping_uol_element}
-					</PRODUTOS>
-				}	
+			self.class.to_shopping_uol [self]
 		end
 
 		def to_shopping_uol_element
@@ -46,8 +55,9 @@ module SellObject
 			end	
 			default_mappings_hash = SellObject::DefaultMappings.shopping_uol
 			result_xml = SellObject::ShoppingUol::XML_ELEMENT.clone
-			custom_mappings_hash.each { |key, value| result_xml.gsub! ":#{key}", send(value).to_s }
-			default_mappings_hash.each { |key, value| result_xml.gsub! ":#{key}", send(value).to_s }
+			formatter_proxy = SellObject::ShoppingUol::FormatterProxy.new self
+			custom_mappings_hash.each { |key, value| result_xml.gsub! ":#{key}", formatter_proxy.send(key, value) }
+			default_mappings_hash.each { |key, value| result_xml.gsub! ":#{key}", formatter_proxy.send(key, value) }
 			result_xml
 		end
 	end

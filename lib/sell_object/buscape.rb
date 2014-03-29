@@ -31,7 +31,7 @@ module SellObject
 	  	private
 
 	  	def method_missing(method, *args, &block)
-	  		target.send args.first
+	  		target.send(args.first).to_s
 	  	end
 	  end
 
@@ -52,12 +52,7 @@ module SellObject
 		# Instance methods added on inclusion
 
 		def to_buscape
-			%Q{
-					<?xml version="1.0" encoding="UTF-8" ?>
-					<produtos>
-						#{to_buscape_element}
-					</produtos>
-				}	
+			self.class.to_buscape [self]
 		end
 
 		def to_buscape_element
