@@ -1,19 +1,34 @@
 module SellObject
 	module Buscape
-		XML_ELEMENT = %q{
-					<produto>
-						<id_oferta>:id_oferta</id_oferta>
-		  			<descricao>:descricao</descricao>
-		  			<preco>:preco</preco>
-		  			<link_prod>:link_prod</link_prod>
-		  			<imagem>:imagem</imagem>
-		  			<categoria>:categoria</categoria>
-					</produto>
-		}
-
 		def self.included(base)
 	  	base.extend ClassMethods
 	  end
+
+	  def self.element_xml
+	  	%q{
+						<produto>
+							<id_oferta>:id_oferta</id_oferta>
+			  			<descricao>:descricao</descricao>
+			  			<preco>:preco</preco>
+			  			<link_prod>:link_prod</link_prod>
+			  			<imagem>:imagem</imagem>
+			  			<categoria>:categoria</categoria>
+						</produto>
+			}	
+	  end
+
+	  def self.wrap_xml
+	  	%Q{
+					<?xml version="1.0" encoding="UTF-8" ?>
+					<produtos>
+						:elements
+					</produtos>
+				}
+	  end
+
+	  # def self.timestamp
+	  # 	'Generated at 2014-03-28T10:42:48GMT-3'
+	  # end
 
 	  class FormatterProxy
 	  	attr_accessor :target
@@ -40,12 +55,7 @@ module SellObject
 
 			def to_buscape(objects)
 				elements = objects.map {|obj| obj.to_buscape_element }.join ''
-				%Q{
-						<?xml version="1.0" encoding="UTF-8" ?>
-						<produtos>
-							#{elements}
-						</produtos>
-					}
+				SellObject::Buscape.wrap_xml.gsub ':elements', elements				
 			end
 		end	 
 
@@ -62,7 +72,7 @@ module SellObject
 				custom_mappings_hash = {}
 			end	
 			default_mappings_hash = SellObject::DefaultMappings.buscape
-			result_xml = SellObject::Buscape::XML_ELEMENT.clone
+			result_xml = SellObject::Buscape.element_xml
 			formatter_proxy = SellObject::Buscape::FormatterProxy.new self
 			custom_mappings_hash.each { |key, value| result_xml.gsub! ":#{key}", formatter_proxy.send(key, value) }
 			default_mappings_hash.each { |key, value| result_xml.gsub! ":#{key}", formatter_proxy.send(key, value) }
