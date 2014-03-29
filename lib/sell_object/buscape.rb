@@ -20,15 +20,19 @@ module SellObject
 	  def self.wrap_xml
 	  	%Q{
 					<?xml version="1.0" encoding="UTF-8" ?>
+					<!-- #{timestamp} -->
 					<produtos>
 						:elements
 					</produtos>
 				}
 	  end
 
-	  # def self.timestamp
-	  # 	'Generated at 2014-03-28T10:42:48GMT-3'
-	  # end
+	  def self.timestamp
+	  	now = Time.now
+    	zone_diff = now.strftime("%z").to_i / 100
+    	time = now.strftime "%Y-%m-%dT%H:%M:%SGMT#{'+' if zone_diff >= 0}#{zone_diff}"
+	  	"Generated at #{time}"
+	  end
 
 	  class FormatterProxy
 	  	attr_accessor :target
