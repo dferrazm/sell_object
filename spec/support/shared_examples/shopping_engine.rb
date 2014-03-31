@@ -42,11 +42,11 @@ shared_examples_for 'shopping_engine' do |engine|
 
 					module SellObject::ProductMappings
 		 				def self.buscape
-		 					{ descricao: :custom_description,  link_prod: :custom_url }
+		 					{ :descricao => :custom_description,  :link_prod => :custom_url }
 		 				end
 
 		 				def self.shopping_uol
-			 				{ descricao: :custom_description,  url: :custom_url }
+			 				{ :DESCRICAO => :custom_description,  :URL => :custom_url }
 			 			end
 			 		end		
 				end
