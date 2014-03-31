@@ -1,5 +1,3 @@
-require 'nokogiri'
-
 module SellObject
 	module XmlFormatter
 		def self.format(obj, engine, xml_root, formatter_proxy = nil)

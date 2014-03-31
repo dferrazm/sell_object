@@ -1,3 +1,5 @@
+require 'nokogiri'
+
 require 'sell_object/version'
 require 'sell_object/default_mappings'
 require 'sell_object/xml_formatter'

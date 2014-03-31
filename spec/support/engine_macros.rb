@@ -1,7 +1,7 @@
 module EngineMacros
 	module Buscape
 		DEFAULT_MAPPING_FIXTURE_ONE = %q{
-			<?xml version="1.0" encoding="UTF-8" ?>
+			<?xml version="1.0" encoding="UTF-8"?>
 			<awesome_store>
 				<produtos>
 					<produto>
@@ -17,7 +17,7 @@ module EngineMacros
 		}
 
 		DEFAULT_MAPPING_FIXTURE_MANY = %q{
-			<?xml version="1.0" encoding="UTF-8" ?>
+			<?xml version="1.0" encoding="UTF-8"?>
 			<awesome_store>
 				<produtos>
 					<produto>
@@ -41,7 +41,7 @@ module EngineMacros
 		}
 
 		CUSTOM_MAPPING_FIXTURE_MANY = %q{
-			<?xml version="1.0" encoding="UTF-8" ?>
+			<?xml version="1.0" encoding="UTF-8"?>
 			<awesome_store>				
 				<produtos>
 					<produto>
@@ -67,7 +67,7 @@ module EngineMacros
 
 	module ShoppingUol
 		DEFAULT_MAPPING_FIXTURE_ONE = %q{
-			<?xml version="1.0" encoding="iso-8859-1" ?>
+			<?xml version="1.0" encoding="iso-8859-1"?>
 			<PRODUTOS>
 				<PRODUTO>
 				  <CODIGO>PR1</CODIGO>
@@ -81,7 +81,7 @@ module EngineMacros
 		}
 
 		DEFAULT_MAPPING_FIXTURE_MANY = %q{
-			<?xml version="1.0" encoding="iso-8859-1" ?>
+			<?xml version="1.0" encoding="iso-8859-1"?>
 			<PRODUTOS>
 				<PRODUTO>
 				  <CODIGO>PR1</CODIGO>
@@ -103,7 +103,7 @@ module EngineMacros
 		}
 
 		CUSTOM_MAPPING_FIXTURE_MANY = %q{
-			<?xml version="1.0" encoding="iso-8859-1" ?>
+			<?xml version="1.0" encoding="iso-8859-1"?>
 			<PRODUTOS>
 				<PRODUTO>
 				  <CODIGO>PR1</CODIGO>

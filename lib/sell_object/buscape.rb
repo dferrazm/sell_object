@@ -7,15 +7,15 @@ module SellObject
 	  def self.wrap_xml(elements, store_name = nil)
 	  	store_name ||= SellObject::Config.store_name
 	  	raise ArgumentError, 'No store name found (nil). You have to either pass it as an argument or set it up in SellObject::Config' if store_name.nil?
-	  	%Q{
-					<?xml version="1.0" encoding="UTF-8" ?>
-					<!-- #{timestamp} -->
-					<#{store_name}>
-						<produtos>
-							#{elements}
-						</produtos>
-					</#{store_name}>
-				}
+	  	result = Nokogiri::XML::Builder.new(encoding: 'UTF-8') do |xml|
+	  		xml.comment timestamp
+	  		xml.send(store_name) {
+	  			xml.produtos do
+	  				xml << elements
+	  			end
+	  		}
+	  	end
+	  	result.to_xml
 	  end
 
 	  def self.timestamp

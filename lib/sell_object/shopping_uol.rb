@@ -5,13 +5,14 @@ module SellObject
 	  end
 
 	  def self.wrap_xml(elements)
-	  	%Q{
-					<?xml version="1.0" encoding="iso-8859-1" ?>
-					<PRODUTOS>
-						#{elements}
-					</PRODUTOS>
-				}
-	  end	  
+	  	result = Nokogiri::XML::Builder.new(encoding: 'iso-8859-1') do |xml|
+	  		xml.PRODUTOS {
+  				xml << elements
+	  		}
+	  	end
+	  	result.to_xml
+	  end
+	  	  
 	  module ClassMethods
 			# Class methods added on inclusion
 
