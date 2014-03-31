@@ -5,7 +5,9 @@ module SellObject
 				:CODIGO => :id, 
 				:DESCRICAO => :description, 
 				:PRECO => :price,
-				:URL => :url
+				:URL => :url,
+				:URL_IMAGEM => :image_url,
+				:DEPARTAMENTO => :category
 			}
 		end
 

@@ -74,6 +74,8 @@ module EngineMacros
 				  <DESCRICAO>Some lame product</DESCRICAO>
 				  <PRECO>10.5</PRECO>
 				  <URL>http://example.com/lame-product</URL>
+				  <URL_IMAGEM>http://example.com/images/lame-product.png</URL_IMAGEM>
+				  <DEPARTAMENTO>Electronics</DEPARTAMENTO>
 				</PRODUTO>
 			</PRODUTOS>
 		}
@@ -86,12 +88,16 @@ module EngineMacros
 				  <DESCRICAO>Some lame product</DESCRICAO>
 				  <PRECO>10.5</PRECO>
 				  <URL>http://example.com/lame-product</URL>
+				  <URL_IMAGEM>http://example.com/images/lame-product.png</URL_IMAGEM>
+				  <DEPARTAMENTO>Electronics</DEPARTAMENTO>
 				</PRODUTO>
 				<PRODUTO>
 				  <CODIGO>PR2</CODIGO>
 				  <DESCRICAO>Some boring product</DESCRICAO>
 				  <PRECO>7</PRECO>
 				  <URL>http://example.com/boring-product</URL>
+				  <URL_IMAGEM>http://example.com/images/boring-product.png</URL_IMAGEM>
+				  <DEPARTAMENTO>Kitchenware</DEPARTAMENTO>
 				</PRODUTO>
 			</PRODUTOS>
 		}
@@ -104,12 +110,16 @@ module EngineMacros
 				  <DESCRICAO>My custom lame product description</DESCRICAO>
 				  <PRECO>10.5</PRECO>
 				  <URL>http://example.com/custom-lame-product</URL>
+				  <URL_IMAGEM>http://example.com/images/lame-product.png</URL_IMAGEM>
+				  <DEPARTAMENTO>Electronics</DEPARTAMENTO>
 				</PRODUTO>
 				<PRODUTO>
 				  <CODIGO>PR2</CODIGO>
 				  <DESCRICAO>My custom boring product description</DESCRICAO>
 				  <PRECO>7</PRECO>
 				  <URL>http://example.com/custom-boring-product</URL>
+				  <URL_IMAGEM>http://example.com/images/boring-product.png</URL_IMAGEM>
+				  <DEPARTAMENTO>Kitchenware</DEPARTAMENTO>
 				</PRODUTO>
 			</PRODUTOS>
 		}
