@@ -4,11 +4,11 @@ module SellObject
 	  	base.extend ClassMethods
 	  end
 
-	  def self.wrap_xml
+	  def self.wrap_xml(elements)
 	  	%Q{
 					<?xml version="1.0" encoding="iso-8859-1" ?>
 					<PRODUTOS>
-						:elements
+						#{elements}
 					</PRODUTOS>
 				}
 	  end	  
@@ -17,7 +17,7 @@ module SellObject
 
 			def to_shopping_uol(objects)
 				elements = objects.map {|obj| SellObject::XmlFormatter.format obj, :shopping_uol, :PRODUTO }.join ''
-				SellObject::ShoppingUol.wrap_xml.gsub ':elements', elements
+				SellObject::ShoppingUol.wrap_xml elements
 			end
 		end	 
 

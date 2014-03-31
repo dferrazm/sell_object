@@ -8,7 +8,11 @@ describe SellObject::Buscape do
 		it 'inserts the timestamp into the xml' do
 			timestamp = Time.now.to_s
 			subject.stub(:timestamp).and_return '2014-03-29 13:28:32 -0300'
-			expect(subject.wrap_xml).to include '<!-- 2014-03-29 13:28:32 -0300 -->'
+			expect(subject.wrap_xml 'xml elements').to include '<!-- 2014-03-29 13:28:32 -0300 -->'
+		end
+
+		it 'inserts the given elements inside the <produtos> tag' do
+			expect(remove_xml_noise subject.wrap_xml('xml elements')).to include '<produtos>xml elements</produtos>'
 		end
 	end
 

@@ -4,12 +4,12 @@ module SellObject
 	  	base.extend ClassMethods
 	  end
 
-	  def self.wrap_xml
+	  def self.wrap_xml(elements)
 	  	%Q{
 					<?xml version="1.0" encoding="UTF-8" ?>
 					<!-- #{timestamp} -->
 					<produtos>
-						:elements
+						#{elements}
 					</produtos>
 				}
 	  end
@@ -26,7 +26,7 @@ module SellObject
 
 			def to_buscape(objects)
 				elements = objects.map {|obj| SellObject::XmlFormatter.format obj, :buscape, :produto, SellObject::Buscape::FormatterProxy.new(obj) }.join ''
-				SellObject::Buscape.wrap_xml.gsub ':elements', elements				
+				SellObject::Buscape.wrap_xml elements
 			end
 		end	 
 
