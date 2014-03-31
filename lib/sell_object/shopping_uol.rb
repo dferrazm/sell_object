@@ -12,12 +12,11 @@ module SellObject
 					</PRODUTOS>
 				}
 	  end	  
-
 	  module ClassMethods
 			# Class methods added on inclusion
 
 			def to_shopping_uol(objects)
-				elements = objects.map {|obj| obj.to_shopping_uol_element }.join ''
+				elements = objects.map {|obj| SellObject::XmlFormatter.format obj, :shopping_uol, :PRODUTO }.join ''
 				SellObject::ShoppingUol.wrap_xml.gsub ':elements', elements
 			end
 		end	 
@@ -26,10 +25,6 @@ module SellObject
 
 		def to_shopping_uol
 			self.class.to_shopping_uol [self]
-		end
-
-		def to_shopping_uol_element
-			SellObject::XmlFormatter.format self, :shopping_uol, :PRODUTO
 		end
 	end
 end

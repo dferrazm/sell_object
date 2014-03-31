@@ -25,7 +25,7 @@ module SellObject
 			# Class methods added on inclusion
 
 			def to_buscape(objects)
-				elements = objects.map {|obj| obj.to_buscape_element }.join ''
+				elements = objects.map {|obj| SellObject::XmlFormatter.format obj, :buscape, :produto, SellObject::Buscape::FormatterProxy.new(obj) }.join ''
 				SellObject::Buscape.wrap_xml.gsub ':elements', elements				
 			end
 		end	 
@@ -34,11 +34,6 @@ module SellObject
 
 		def to_buscape
 			self.class.to_buscape [self]
-		end
-
-		def to_buscape_element
-			proxy = SellObject::Buscape::FormatterProxy.new self
-			SellObject::XmlFormatter.format self, :buscape, :produto, proxy
 		end
 	end
 end
