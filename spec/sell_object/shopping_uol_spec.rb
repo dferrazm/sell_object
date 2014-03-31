@@ -1,6 +1,10 @@
 require 'spec_helper'
 include EngineMacros::ShoppingUol
 
+class Product
+	include SellObject::ShoppingUol
+end
+
 describe SellObject::ShoppingUol do
 	it_behaves_like 'shopping_engine', :shopping_uol
 

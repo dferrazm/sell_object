@@ -4,13 +4,17 @@ module SellObject
 	  	base.extend ClassMethods
 	  end
 
-	  def self.wrap_xml(elements)
+	  def self.wrap_xml(elements, store_name = nil)
+	  	store_name ||= SellObject::Config.store_name
+	  	raise ArgumentError, 'No store name found (nil). You have to either pass it as an argument or set it up in SellObject::Config' if store_name.nil?
 	  	%Q{
 					<?xml version="1.0" encoding="UTF-8" ?>
 					<!-- #{timestamp} -->
-					<produtos>
-						#{elements}
-					</produtos>
+					<#{store_name}>
+						<produtos>
+							#{elements}
+						</produtos>
+					</#{store_name}>
 				}
 	  end
 
@@ -24,16 +28,16 @@ module SellObject
 	  module ClassMethods
 			# Class methods added on inclusion
 
-			def to_buscape(objects)
+			def to_buscape(objects, store_name = nil)
 				elements = objects.map {|obj| SellObject::XmlFormatter.format obj, :buscape, :produto, SellObject::Buscape::FormatterProxy.new(obj) }.join ''
-				SellObject::Buscape.wrap_xml elements
+				SellObject::Buscape.wrap_xml elements, store_name
 			end
 		end	 
 
 		# Instance methods added on inclusion
 
-		def to_buscape
-			self.class.to_buscape [self]
+		def to_buscape(store_name = nil)
+			self.class.to_buscape [self], store_name
 		end
 	end
 end

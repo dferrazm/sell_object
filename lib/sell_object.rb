@@ -40,4 +40,16 @@ module SellObject
   		end
   	end
   end
+
+  module Config
+    @@store_name = nil
+
+    def self.store_name
+      @@store_name
+    end
+
+    def self.store_name=(name)
+      @@store_name = name.gsub(/ +/, '_').downcase
+    end
+  end
 end

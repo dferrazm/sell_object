@@ -92,4 +92,19 @@ describe SellObject do
 			end
 		end
 	end
+
+	describe 'Config' do
+		let(:subject) { SellObject::Config }
+
+		describe '#store_name' do
+			it 'initializes it with nil' do
+				expect(subject.store_name).to be_nil
+			end
+
+			it 'underscores the given assigned name' do
+				subject.store_name = 'My Store    Name'
+				expect(subject.store_name).to eq 'my_store_name'
+			end
+		end		
+	end
 end
