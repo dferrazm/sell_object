@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Daniel Ferraz"]
   spec.email         = ["d.ferrazm@gmail.com"]
   spec.description   = %q{Extensible solution to make it easy to export ruby objects to be used on price comparison shopping engines}
-  spec.summary       = %q{Your ruby objects on price comparison shopping engines}
+  spec.summary       = %q{Sell your Ruby on Rails objects on price comparison shopping engines}
   spec.homepage      = "http://github.com/imaboldcompany/sell_object"
   spec.license       = "MIT"
 
@@ -18,8 +18,11 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
+  spec.required_ruby_version     = '>= 1.9.3p125'
+
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec"
+
   spec.add_dependency "nokogiri"
 end
