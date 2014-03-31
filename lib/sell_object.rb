@@ -11,6 +11,10 @@ module SellObject
   	base.extend ClassMethods
   end  
 
+  def self.setup
+    yield SellObject::Config
+  end
+
   def self.supported_engines
   	%w(shopping_uol buscape)
   end

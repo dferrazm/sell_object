@@ -49,6 +49,16 @@ describe SellObject do
 		it 'returns the supported shopping engines array' do
 			expect(subject.supported_engines).to match_array %w(shopping_uol buscape)
 		end
+	end
+
+	describe '#setup' do
+		it 'yields the SellObject::Config module' do
+			config_module = nil
+			subject.setup do |config|
+				config_module = config
+			end
+			expect(config_module.name).to eq 'SellObject::Config'
+		end
 	end	
 
 	describe '#mapping_for' do
