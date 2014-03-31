@@ -53,7 +53,7 @@ module SellObject
     end
 
     def self.store_name=(name)
-      @@store_name = name.gsub(/ +/, '_').downcase
+      @@store_name = name.gsub(/ +/, '_')
     end
   end
 end

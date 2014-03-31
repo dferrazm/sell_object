@@ -113,7 +113,7 @@ describe SellObject do
 
 			it 'underscores the given assigned name' do
 				subject.store_name = 'My Store    Name'
-				expect(subject.store_name).to eq 'my_store_name'
+				expect(subject.store_name).to eq 'My_Store_Name'
 			end
 		end		
 	end
