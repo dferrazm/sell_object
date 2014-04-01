@@ -5,8 +5,9 @@ module SellObject
 	  end
 
 	  def self.wrap_xml(elements, store_name = nil)
-	  	store_name ||= SellObject::Config.store_name
+	  	store_name ||= SellObject::Config.store_name	  	
 	  	raise ArgumentError, 'No store name found (nil). You have to either pass it as an argument or set it up in SellObject::Config' if store_name.nil?
+	  	store_name = store_name.gsub(/ +/, '_')
 	  	result = Nokogiri::XML::Builder.new(encoding: 'UTF-8') do |xml|
 	  		xml.comment timestamp
 	  		xml.send(store_name) {

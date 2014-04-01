@@ -31,6 +31,10 @@ describe SellObject::Buscape do
 					it 'generates the XML with the given store name as root' do
 						expect(remove_xml_noise product.to_buscape('great')).to match /<great><produtos>.*<\/produtos><\/great>/
 					end
+
+					it 'underscores the given store name' do
+						expect(remove_xml_noise product.to_buscape('My Awesome  Store')).to match /<My_Awesome_Store><produtos>.*<\/produtos><\/My_Awesome_Store>/
+					end
 				end
 			end			
 		end
