@@ -111,9 +111,9 @@ describe SellObject do
 				expect(subject.store_name).to be_nil
 			end
 
-			it 'underscores the given assigned name' do
-				subject.store_name = 'My Store    Name'
-				expect(subject.store_name).to eq 'My_Store_Name'
+			it 'assigns the given store name' do
+				subject.store_name = 'My Store'
+				expect(subject.store_name).to eq 'My Store'
 			end
 		end		
 	end
