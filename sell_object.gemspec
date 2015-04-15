@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["d.ferrazm@gmail.com"]
   spec.description   = %q{Extensible solution to make it easy to export ruby objects to be used on price comparison shopping engines}
   spec.summary       = %q{Sell your Ruby on Rails objects on price comparison shopping engines}
-  spec.homepage      = "http://github.com/imaboldcompany/sell_object"
+  spec.homepage      = "http://github.com/dferrazm/sell_object"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

@@ -1,7 +1,5 @@
 # SellObject
 
-By [Ima Bold](http://imabold.com).
-
 [![Code Climate](https://codeclimate.com/github/imaboldcompany/sell_object.png)](https://codeclimate.com/github/imaboldcompany/sell_object)
 [![Build Status](https://travis-ci.org/imaboldcompany/sell_object.svg?branch=master)](https://travis-ci.org/imaboldcompany/sell_object)
 
@@ -38,7 +36,7 @@ This will add the SellObject initializer into your Rails config/initializers fol
 
 ### Setting up the class
 
-Suppose you have a class `Product` and want to make its objects sellable through Shopping UOL. 
+Suppose you have a class `Product` and want to make its objects sellable through Shopping UOL.
 You do that by using `sell_through` as shown below:
 
 ```ruby
@@ -73,16 +71,16 @@ SellObject comes with a default mapping to be applied through the exporting proc
 module SellObject
 	module DefaultMappings
 		def self.shopping_uol
-			{ 
-				:CODIGO => :id, 
-				:DESCRICAO => :description, 
+			{
+				:CODIGO => :id,
+				:DESCRICAO => :description,
 				:PRECO => :price,
 				:URL => :url,
 				:URL_IMAGEM => :image_url,
 				:DEPARTAMENTO => :category  
 			}
 		end
-	end	
+	end
 end
 ```
 If you want to use the default mapping, just make sure that the object responds to the required methods. In our example, `product` would have to respond to `:id`, `:description`, `:price` and so forth.
@@ -93,13 +91,13 @@ If you want to create your own mapping, you can define a module named with the o
 module SellObject
 	module ProductMappings
 		def self.shopping_uol
-			{ 
-				:CODIGO => :code, 
-				:DESCRICAO => :details, 
+			{
+				:CODIGO => :code,
+				:DESCRICAO => :details,
 				:URL => :web_page  
 			}
 		end
-	end	
+	end
 end
 ```
 In this case, `product` would have to respond to `:code`, `:details` and `:web_page`. Note that we didn't overwrite all the attribute mappings. The leftovers will fall back to the default mapping. So in this example, `product` would still have to respond to the `:price`, `:image_url` and `:category` methods.
@@ -132,7 +130,7 @@ Here's the list of shopping engines that require a store name for the exporting 
 
 ## Contributing
 
-Questions or problems? Please post them on the [issue tracker](https://github.com/imaboldcompany/sell_object/issues).
+Questions or problems? Please post them on the [issue tracker](https://github.com/dferrazm/sell_object/issues).
 
 You can contribute by doing the following:
 
