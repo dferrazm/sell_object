@@ -7,21 +7,21 @@ shared_examples_for 'shopping_engine' do |engine|
 	let(:products) { [lame_product, boring_product] }
 
 	before do
-		lame_product.stub(:id).and_return 'PR1'
-		lame_product.stub(:description).and_return 'Some lame product'
-		lame_product.stub(:price).and_return 10.5
-		lame_product.stub(:category).and_return 'Electronics'
-		lame_product.stub(:url).and_return 'http://example.com/lame-product'
-		lame_product.stub(:image_url).and_return 'http://example.com/images/lame-product.png'
+		allow(lame_product).to receive(:id).and_return 'PR1'
+		allow(lame_product).to receive(:description).and_return 'Some lame product'
+		allow(lame_product).to receive(:price).and_return 10.5
+		allow(lame_product).to receive(:category).and_return 'Electronics'
+		allow(lame_product).to receive(:url).and_return 'http://example.com/lame-product'
+		allow(lame_product).to receive(:image_url).and_return 'http://example.com/images/lame-product.png'
 
-		boring_product.stub(:id).and_return 'PR2'
-		boring_product.stub(:description).and_return 'Some boring product'
-		boring_product.stub(:price).and_return 7
-		boring_product.stub(:category).and_return 'Kitchenware'
-		boring_product.stub(:url).and_return 'http://example.com/boring-product'
-		boring_product.stub(:image_url).and_return 'http://example.com/images/boring-product.png'
+		allow(boring_product).to receive(:id).and_return 'PR2'
+		allow(boring_product).to receive(:description).and_return 'Some boring product'
+		allow(boring_product).to receive(:price).and_return 7
+		allow(boring_product).to receive(:category).and_return 'Kitchenware'
+		allow(boring_product).to receive(:url).and_return 'http://example.com/boring-product'
+		allow(boring_product).to receive(:image_url).and_return 'http://example.com/images/boring-product.png'
 
-		SellObject::Config.stub(:store_name).and_return 'awesome_store'
+		allow(SellObject::Config).to receive(:store_name).and_return 'awesome_store'
 	end
 
 	describe 'class_methods' do
@@ -34,10 +34,10 @@ shared_examples_for 'shopping_engine' do |engine|
 
 			context 'using custom mappings' do
 				before do
-					lame_product.stub(:custom_description).and_return 'My custom lame product description'
-					lame_product.stub(:custom_url).and_return 'http://example.com/custom-lame-product'
-					boring_product.stub(:custom_description).and_return 'My custom boring product description'
-					boring_product.stub(:custom_url).and_return 'http://example.com/custom-boring-product'
+					allow(lame_product).to receive(:custom_description).and_return 'My custom lame product description'
+					allow(lame_product).to receive(:custom_url).and_return 'http://example.com/custom-lame-product'
+					allow(boring_product).to receive(:custom_description).and_return 'My custom boring product description'
+					allow(boring_product).to receive(:custom_url).and_return 'http://example.com/custom-boring-product'
 
 					module SellObject::ProductMappings
 		 				def self.buscape
@@ -47,7 +47,7 @@ shared_examples_for 'shopping_engine' do |engine|
 		 				def self.shopping_uol
 			 				{ :DESCRICAO => :custom_description,  :URL => :custom_url }
 			 			end
-			 		end		
+			 		end
 				end
 
 				after do
@@ -57,7 +57,7 @@ shared_examples_for 'shopping_engine' do |engine|
 				it 'generates the XML accordingly with all the objects attributes and the custom mappings' do
 					expect(remove_xml_noise Product.send("to_#{engine}", products)).to eq remove_xml_noise macros::CUSTOM_MAPPING_FIXTURE_MANY
 				end
-			end			
+			end
 		end
 	end
 
@@ -66,11 +66,6 @@ shared_examples_for 'shopping_engine' do |engine|
 			it 'generates the XML accordingly with the object attributes' do
 				expect(remove_xml_noise lame_product.send("to_#{engine}")).to eq remove_xml_noise macros::DEFAULT_MAPPING_FIXTURE_ONE
 			end
-
-			# it "calls the #to_#{engine} class method passing the instance wrapped in an array" do
-			# 	Product.should_receive(:"to_#{engine}").with [lame_product]
-			# 	lame_product.send "to_#{engine}"
-			# end
-		end			
+		end
 	end
 end

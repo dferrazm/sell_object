@@ -12,12 +12,8 @@ describe SellObject do
 			Object.send :remove_const, :TargetClass
 		end
 
-		it 'makes the target class extend SellObject::ClassMethods'	do
-			expect(TargetClass.is_a? SellObject::ClassMethods).to be_true
-		end
-
 		describe 'ClassMethods' do
-			describe '#sell_through' do		
+			describe '#sell_through' do
 				context 'passing invalid arguments' do
 					it 'raises ArgumentError with an invalid engine' do
 						expect { TargetClass.sell_through :foo }.to raise_error ArgumentError, 'invalid shopping engine foo'
@@ -28,22 +24,22 @@ describe SellObject do
 					end
 				end
 
-				context 'buscape' do			
+				context 'buscape' do
 					it 'includes the module SellObject::Buscape in the target class' do
 						TargetClass.sell_through :buscape
-						expect(TargetClass.included_modules).to include SellObject::Buscape				
+						expect(TargetClass.included_modules).to include SellObject::Buscape
 					end
 				end
 
-				context 'shopping_uol' do			
+				context 'shopping_uol' do
 					it 'includes the module SellObject::ShoppingUol in the target class' do
 						TargetClass.sell_through :shopping_uol
-						expect(TargetClass.included_modules).to include SellObject::ShoppingUol				
+						expect(TargetClass.included_modules).to include SellObject::ShoppingUol
 					end
 				end
 			end
 		end
-	end	
+	end
 
 	describe '#supported_engines' do
 		it 'returns the supported shopping engines array' do
@@ -59,13 +55,13 @@ describe SellObject do
 			end
 			expect(config_module.name).to eq 'SellObject::Config'
 		end
-	end	
+	end
 
 	describe '#mapping_for' do
 		before do
-			SellObject.stub(:supported_engines).and_return %w(bar)
-			SellObject::DefaultMappings.stub(:bar).and_return({t1: :v1, t2: :v2})
-			
+			allow(SellObject).to receive(:supported_engines).and_return %w(bar)
+			allow(SellObject::DefaultMappings).to receive(:bar).and_return({t1: :v1, t2: :v2})
+
 			class TargetObject
 			end
 		end
@@ -83,7 +79,7 @@ describe SellObject do
 				expect(subject.mapping_for TargetObject.new, :bar).to eq({t1: :v1, t2: :v2})
 			end
 		end
-		
+
 		context 'when there\s a custom mapping defined' do
 			before do
 				module SellObject::TargetObjectMappings
@@ -115,6 +111,6 @@ describe SellObject do
 				subject.store_name = 'My Store'
 				expect(subject.store_name).to eq 'My Store'
 			end
-		end		
+		end
 	end
 end

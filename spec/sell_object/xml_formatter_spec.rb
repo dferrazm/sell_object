@@ -5,7 +5,7 @@ describe SellObject::XmlFormatter do
 		let(:target_object) { double some_value: 'some value' }
 
 		before do
-			SellObject.stub(:mapping_for).with(target_object, :foo).and_return({some_tag: :some_value})
+			allow(SellObject).to receive(:mapping_for).with(target_object, :foo).and_return({some_tag: :some_value})
 		end
 
 		it 'formats an object into a xml element based on its mapping, given an engine and a xml root' do

@@ -5,7 +5,7 @@ describe SellObject::Buscape::FormatterProxy do
 	let(:formatter) { SellObject::Buscape::FormatterProxy.new target_object }
 
 	it 'extends from SellObject::FormatterProxy' do
-		expect(formatter.is_a? SellObject::FormatterProxy).to be_true
+		expect(formatter.is_a? SellObject::FormatterProxy).to be_truthy
 	end
 
 	describe '#preco' do
